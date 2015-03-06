@@ -1,0 +1,5 @@
+google-fluentd-catch-all-config (0.1) UNRELEASED; urgency=medium
+
+  * Initial release.
+
+ -- Google Cloud Logging Team <cloud-logging-feedback@google.com>  Tue, 03 Mar 2015 16:55:25 -0500

@@ -1,0 +1,15 @@
+Source: google-fluentd-catch-all-config
+Section: misc
+Priority: extra
+Maintainer: Google, Inc. <cloud-logging-feedback@google.com>
+Build-Depends: debhelper (>= 7.0.0~), config-package-dev (>= 5.0)
+Standards-Version: 3.9.5
+
+Package: google-fluentd-catch-all-config
+Architecture: all
+Depends: ${misc:Depends}, google-fluentd
+Provides: ${diverted-files}
+Conflicts: ${diverted-files}
+Description: Catch-all configuration files for google-fluentd on GCE.
+ A set of configuration files for google-fluentd used to ingest logs
+ from the system and third-party application packages.
