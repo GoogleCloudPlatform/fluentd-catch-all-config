@@ -9,9 +9,12 @@ BUILD_DIR=build
 DEB_PACKAGE_DIR=${BUILD_DIR}/deb/${PACKAGE_NAME}-${PACKAGE_VERSION}
 DEB_FILES_DIR=${DEB_PACKAGE_DIR}/files/etc/${BASE_PACKAGE_NAME}
 
-EL_FILES_DIR=${BUILD_DIR}/el/${PACKAGE_NAME}-${PACKAGE_VERSION}/files
+RPM_PACKAGE_DIR=${BUILD_DIR}/el/${PACKAGE_NAME}-${PACKAGE_VERSION}
+EL_FILES_DIR=${RPM_PACKAGE_DIR}/files/etc/${BASE_PACKAGE_NAME}
 
-all: deb tar
+all: pkg tar
+
+pkg: deb rpm
 
 # The config file needs to be renamed with a .google extension to permit
 # a diversion from the original to be installed.
@@ -21,7 +24,14 @@ deb: populate-deb
 	(cd ${DEB_PACKAGE_DIR} && debuild --no-tgz-check -us -uc)
 	mv ${DEB_FILES_DIR}/google-fluentd.conf.google ${DEB_FILES_DIR}/google-fluentd.conf
 
+rpm: populate-el
+	mv ${EL_FILES_DIR}/google-fluentd.conf ${EL_FILES_DIR}/google-fluentd.conf.google
+	ls -l ${EL_FILES_DIR}
+	rpmbuild -v -bb --nodeps --target noarch --define "buildroot `pwd`/${RPM_PACKAGE_DIR}/files" --define "_rpmdir `pwd`/${BUILD_DIR}/el" pkg/el/google-fluentd-catch-all-config.spec
+	mv ${EL_FILES_DIR}/google-fluentd.conf.google ${EL_FILES_DIR}/google-fluentd.conf
+
 tar: deb-tar el-tar
+	rpmbuild  -v -bs pkg/el/google-fluentd-catch-all-config.spec
 
 # tarfile for Debian systems
 deb-tar: populate-deb
