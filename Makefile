@@ -9,13 +9,19 @@ BUILD_DIR=build
 DEB_PACKAGE_DIR=${BUILD_DIR}/deb/${PACKAGE_NAME}-${PACKAGE_VERSION}
 DEB_FILES_DIR=${DEB_PACKAGE_DIR}/files/etc/${BASE_PACKAGE_NAME}
 
-EL_FILES_DIR=${BUILD_DIR}/el/${PACKAGE_NAME}-${PACKAGE_VERSION}/files
+RPM_PACKAGE_DIR=${BUILD_DIR}/el/${PACKAGE_NAME}-${PACKAGE_VERSION}
+EL_FILES_DIR=${RPM_PACKAGE_DIR}/files/etc/${BASE_PACKAGE_NAME}
 
-all: deb tar
+all: pkg tar
+
+pkg: deb rpm
 
 deb: populate-deb
 	cp -a pkg/deb/debian ${DEB_PACKAGE_DIR}
 	(cd ${DEB_PACKAGE_DIR} && debuild --no-tgz-check -us -uc)
+
+rpm: populate-el
+	rpmbuild -v -bb --nodeps --target noarch --define "buildroot `pwd`/${RPM_PACKAGE_DIR}/files" --define "_rpmdir `pwd`/${BUILD_DIR}/el" --define "package_version ${PACKAGE_VERSION}" --define "package_build_num 1" pkg/el/google-fluentd-catch-all-config.spec
 
 tar: deb-tar el-tar
 
