@@ -7,9 +7,7 @@ Standards-Version: 3.9.5
 
 Package: google-fluentd-catch-all-config
 Architecture: all
-Depends: ${misc:Depends}, google-fluentd
-Provides: ${diverted-files}
-Conflicts: ${diverted-files}
+Depends: ${misc:Depends}, google-fluentd (>= 1.3.0)
 Description: Catch-all configuration files for google-fluentd on GCE.
  A set of configuration files for google-fluentd used to ingest logs
  from the system and third-party application packages.

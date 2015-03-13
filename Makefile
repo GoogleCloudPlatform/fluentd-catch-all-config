@@ -2,7 +2,7 @@
 
 BASE_PACKAGE_NAME=google-fluentd
 PACKAGE_NAME=${BASE_PACKAGE_NAME}-catch-all-config
-PACKAGE_VERSION=0.1
+PACKAGE_VERSION=0.2
 
 BUILD_DIR=build
 
@@ -16,13 +16,9 @@ all: pkg tar
 
 pkg: deb rpm
 
-# The config file needs to be renamed with a .google extension to permit
-# a diversion from the original to be installed.
 deb: populate-deb
 	cp -a pkg/deb/debian ${DEB_PACKAGE_DIR}
-	mv ${DEB_FILES_DIR}/google-fluentd.conf ${DEB_FILES_DIR}/google-fluentd.conf.google
 	(cd ${DEB_PACKAGE_DIR} && debuild --no-tgz-check -us -uc)
-	mv ${DEB_FILES_DIR}/google-fluentd.conf.google ${DEB_FILES_DIR}/google-fluentd.conf
 
 rpm: populate-el
 	mv ${EL_FILES_DIR}/google-fluentd.conf ${EL_FILES_DIR}/google-fluentd.conf.google
@@ -52,7 +48,7 @@ populate-el:
 	mkdir -p ${EL_FILES_DIR}
 	cp -a configs/* ${EL_FILES_DIR}
 	sed -i -e 's/path \/var\/log\/syslog/path \/var\/log\/messages/' \
-	    ${EL_FILES_DIR}/catch-all-inputs.d/syslog.conf
+	    ${EL_FILES_DIR}/config.d/syslog.conf
 
 clean:
 	rm -rf *.tar.gz ${BUILD_DIR}
