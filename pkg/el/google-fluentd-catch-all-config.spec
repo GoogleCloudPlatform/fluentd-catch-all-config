@@ -16,6 +16,7 @@ from the system and third-party application packages.
 %files
 %dir /etc/google-fluentd
 %config(noreplace) /etc/google-fluentd
+%dir /var/lib/google-fluentd/pos
 
 %clean
 # don't clean up the files here; we'll do it in the toplevel Makefile
