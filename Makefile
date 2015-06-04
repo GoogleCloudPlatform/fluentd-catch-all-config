@@ -7,10 +7,14 @@ PACKAGE_VERSION=0.2
 BUILD_DIR=build
 
 DEB_PACKAGE_DIR=${BUILD_DIR}/deb/${PACKAGE_NAME}-${PACKAGE_VERSION}
-DEB_FILES_DIR=${DEB_PACKAGE_DIR}/files/etc/${BASE_PACKAGE_NAME}
+DEB_FILES_BASE=${DEB_PACKAGE_DIR}/files
+DEB_FILES_DIR=${DEB_FILES_BASE}/etc/${BASE_PACKAGE_NAME}
+DEB_POS_FILES_DIR=${DEB_FILES_BASE}/var/lib/${BASE_PACKAGE_NAME}/pos
 
 RPM_PACKAGE_DIR=${BUILD_DIR}/el/${PACKAGE_NAME}-${PACKAGE_VERSION}
-EL_FILES_DIR=${RPM_PACKAGE_DIR}/files/etc/${BASE_PACKAGE_NAME}
+EL_FILES_BASE=${RPM_PACKAGE_DIR}/files
+EL_FILES_DIR=${EL_FILES_BASE}/etc/${BASE_PACKAGE_NAME}
+EL_POS_FILES_DIR=${EL_FILES_BASE}/var/lib/${BASE_PACKAGE_NAME}/pos
 
 all: pkg tar
 
@@ -36,15 +40,21 @@ el-tar: populate-el
 	    -czf ${PACKAGE_NAME}-${PACKAGE_VERSION}.el.tar.gz .
 
 populate-deb:
+	# populate config files
 	mkdir -p ${DEB_FILES_DIR}
 	cp -a configs/* ${DEB_FILES_DIR}
+	# create the directory used for "pos_file"s
+	mkdir -p ${DEB_POS_FILES_DIR}
 
-# Note: collect /var/log/messages on RH since syslog does not exist.
 populate-el:
+	# populate config files
 	mkdir -p ${EL_FILES_DIR}
 	cp -a configs/* ${EL_FILES_DIR}
+	# collect /var/log/messages on RH since syslog does not exist.
 	sed -i -e 's/path \/var\/log\/syslog/path \/var\/log\/messages/' \
 	    ${EL_FILES_DIR}/config.d/syslog.conf
+	# create the directory used for "pos_file"s
+	mkdir -p ${EL_POS_FILES_DIR}
 
 clean:
 	rm -rf *.tar.gz ${BUILD_DIR}
