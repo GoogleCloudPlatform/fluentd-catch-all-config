@@ -1,11 +1,17 @@
-google-fluentd-catch-all-config (0.2) UNRELEASED; urgency=medium
+google-fluentd-catch-all-config (0.3) unstable; urgency=medium
+
+  * move pos_files to /var/lib/google-fluentd/pos
+
+ -- Google Cloud Logging Team <cloud-logging-feedback@google.com>  Mon, 15 Jun 2015 12:02:17 -0400
+
+google-fluentd-catch-all-config (0.2) unstable; urgency=medium
 
   * Remove google-fluentd.conf so we don't have to worry about diversions.
     This is now included in the base google-fluentd package (v1.3)
 
  -- Google Cloud Logging Team <cloud-logging-feedback@google.com>  Fri, 13 Mar 2015 14:57:49 -0400
 
-google-fluentd-catch-all-config (0.1) UNRELEASED; urgency=medium
+google-fluentd-catch-all-config (0.1) unstable; urgency=medium
 
   * Initial release.
 
