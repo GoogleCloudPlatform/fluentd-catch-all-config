@@ -1,3 +1,9 @@
+google-fluentd-catch-all-config (0.4) unstable; urgency=medium
+
+  * Fix apache/httpd log paths on Red Hat based systems.
+
+ -- Google Cloud Logging Team <cloud-logging-feedback@google.com>  Tue, 21 Jul 2015 18:21:44 -0400
+
 google-fluentd-catch-all-config (0.3) unstable; urgency=medium
 
   * move pos_files to /var/lib/google-fluentd/pos
