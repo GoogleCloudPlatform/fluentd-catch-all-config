@@ -1,11 +1,11 @@
-Source: google-fluentd-catch-all-config
+Source: google-fluentd-catch-all-config-structured
 Section: misc
 Priority: extra
 Maintainer: Google, Inc. <cloud-logging-feedback@google.com>
 Build-Depends: debhelper (>= 7.0.0~), config-package-dev (>= 5.0)
 Standards-Version: 3.9.5
 
-Package: google-fluentd-catch-all-config
+Package: google-fluentd-catch-all-config-structured
 Architecture: all
 Depends: ${misc:Depends}, google-fluentd (>= 1.3.0)
 Description: Catch-all configuration files for google-fluentd on GCE.

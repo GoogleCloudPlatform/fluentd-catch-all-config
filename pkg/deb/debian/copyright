@@ -1,5 +1,5 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: google-fluentd-catch-all-config
+Upstream-Name: google-fluentd-catch-all-config-structured
 Source: https://github.com/GoogleCloudPlatform/fluentd-catch-all-config
 
 Files: *

@@ -1,7 +1,7 @@
 # package google-fluentd configuration files.
 
 BASE_PACKAGE_NAME=google-fluentd
-PACKAGE_NAME=${BASE_PACKAGE_NAME}-catch-all-config
+PACKAGE_NAME=${BASE_PACKAGE_NAME}-catch-all-config-structured
 PACKAGE_VERSION=0.6
 
 BUILD_DIR=build
@@ -25,7 +25,7 @@ deb: populate-deb
 	(cd ${DEB_PACKAGE_DIR} && debuild --no-tgz-check -us -uc)
 
 rpm: populate-el
-	rpmbuild -v -bb --nodeps --target noarch --define "buildroot `pwd`/${RPM_PACKAGE_DIR}/files" --define "_rpmdir `pwd`/${BUILD_DIR}/el" --define "package_version ${PACKAGE_VERSION}" --define "package_build_num 1" pkg/el/google-fluentd-catch-all-config.spec
+	rpmbuild -v -bb --nodeps --target noarch --define "buildroot `pwd`/${RPM_PACKAGE_DIR}/files" --define "_rpmdir `pwd`/${BUILD_DIR}/el" --define "package_version ${PACKAGE_VERSION}" --define "package_build_num 1" pkg/el/google-fluentd-catch-all-config-structured.spec
 
 tar: deb-tar el-tar
 
