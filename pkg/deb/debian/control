@@ -1,7 +1,7 @@
 Source: google-fluentd-catch-all-config
 Section: misc
 Priority: extra
-Maintainer: Google, Inc. <cloud-logging-feedback@google.com>
+Maintainer: Stackdriver Agents <stackdriver-agents@google.com>
 Build-Depends: debhelper (>= 7.0.0~), config-package-dev (>= 5.0)
 Standards-Version: 3.9.5
 
