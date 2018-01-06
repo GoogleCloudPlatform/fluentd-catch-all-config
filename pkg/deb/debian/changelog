@@ -1,3 +1,7 @@
+google-fluentd-catch-all-config (0.6) unstable; urgency=medium
+
+  * Updated deprecated type to @type.
+
 google-fluentd-catch-all-config (0.5) unstable; urgency=medium
 
   * Accept structured logs data over TCP by default.
