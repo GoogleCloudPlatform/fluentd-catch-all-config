@@ -1,3 +1,9 @@
+google-fluentd-catch-all-config (0.6) unstable; urgency=medium
+
+  * Fix deprecated parameter name 'type' warnings in the log.
+
+ -- Google Cloud Logging Team <cloud-logging-feedback@google.com>  Tue, 25 Sep 2017 16:10:21 -0400
+
 google-fluentd-catch-all-config (0.5) unstable; urgency=medium
 
   * Accept structured logs data over TCP by default.
