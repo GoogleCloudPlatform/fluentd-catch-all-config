@@ -2,7 +2,7 @@
 
 BASE_PACKAGE_NAME=google-fluentd
 PACKAGE_NAME=${BASE_PACKAGE_NAME}-catch-all-config-structured
-PACKAGE_VERSION=0.7
+PACKAGE_VERSION=1.0
 BUILD_DESCRIPTION="Automated Build"
 
 BUILD_DIR=build
