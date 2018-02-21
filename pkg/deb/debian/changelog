@@ -1,3 +1,10 @@
+google-fluentd-catch-all-config (0.7) unstable; urgency=medium
+
+  * Update maintainer in debian package. (#18)
+  * Use unique pos file paths for Puppet Enterprise. (#20)
+
+ -- Google Cloud Logging Team <cloud-logging-feedback@google.com>  Wed, 21 Feb 2018 12:11:00 -0500
+
 google-fluentd-catch-all-config (0.6) unstable; urgency=medium
 
   * Fix deprecated parameter name 'type' warnings in the log.
