@@ -3,6 +3,7 @@
 BASE_PACKAGE_NAME=google-fluentd
 PACKAGE_NAME=${BASE_PACKAGE_NAME}-catch-all-config-structured
 PACKAGE_VERSION=0.7
+CHANGE_TEXT="Automated Build"
 
 BUILD_DIR=build
 
@@ -22,9 +23,8 @@ pkg: deb rpm
 
 deb: populate-deb
 	(cd pkg/deb/; \
-		DEBMAIL="stackdriver-agents@google.com" DEBFULLNAME="Stackdriver Agents" \
-		dch --package "${PACKAGE_NAME}" \
-		-v "${PACKAGE_VERSION}" "Automated Build")
+	    dch --controlmaint --package "${PACKAGE_NAME}" \
+	    -v "${PACKAGE_VERSION}" "${CHANGE_TEXT}")
 	cp -a pkg/deb/debian ${DEB_PACKAGE_DIR}
 	(cd ${DEB_PACKAGE_DIR} && debuild --no-tgz-check -us -uc)
 
@@ -36,12 +36,12 @@ tar: deb-tar el-tar
 # tarfile for Debian systems
 deb-tar: populate-deb
 	tar --owner=root --group=root -C ${DEB_FILES_DIR} \
-			-czf ${PACKAGE_NAME}_${PACKAGE_VERSION}.deb.tar.gz .
+	    -czf ${PACKAGE_NAME}_${PACKAGE_VERSION}.deb.tar.gz .
 
 # tarfile for Red Hat systems
 el-tar: populate-el
 	tar --owner=root --group=root -C ${EL_FILES_DIR} \
-			-czf ${PACKAGE_NAME}-${PACKAGE_VERSION}.el.tar.gz .
+	    -czf ${PACKAGE_NAME}-${PACKAGE_VERSION}.el.tar.gz .
 
 populate-deb:
 	# populate config files
@@ -56,7 +56,7 @@ populate-el:
 	cp -a configs/* ${EL_FILES_DIR}
 	# collect /var/log/messages on RH since syslog does not exist.
 	sed -i -e 's/path \/var\/log\/syslog/path \/var\/log\/messages/' \
-			${EL_FILES_DIR}/config.d/syslog.conf
+	    ${EL_FILES_DIR}/config.d/syslog.conf
 	# create the directory used for "pos_file"s
 	mkdir -p ${EL_POS_FILES_DIR}
 
