@@ -3,7 +3,7 @@
 BASE_PACKAGE_NAME=google-fluentd
 PACKAGE_NAME=${BASE_PACKAGE_NAME}-catch-all-config-structured
 PACKAGE_VERSION=0.7
-CHANGE_TEXT="Automated Build"
+BUILD_DESCRIPTION="Automated Build"
 
 BUILD_DIR=build
 
@@ -22,9 +22,9 @@ all: pkg tar
 pkg: deb rpm
 
 deb: populate-deb
-	(cd pkg/deb/; \
-	    dch --controlmaint --package "${PACKAGE_NAME}" \
-	    -v "${PACKAGE_VERSION}" "${CHANGE_TEXT}")
+	(cd pkg/deb/ && \
+	 dch --controlmaint --package "${PACKAGE_NAME}" \
+	     -v "${PACKAGE_VERSION}" "${BUILD_DESCRIPTION}")
 	cp -a pkg/deb/debian ${DEB_PACKAGE_DIR}
 	(cd ${DEB_PACKAGE_DIR} && debuild --no-tgz-check -us -uc)
 
