@@ -1,5 +1,5 @@
 Summary: Catch-all configuration files for google-fluentd on GCE.
-Name: google-fluentd-catch-all-config
+Name: google-fluentd-catch-all-config-structured
 Version: %{package_version}
 Release: %{package_build_num}%{?dist}
 License: ASL 2.0
