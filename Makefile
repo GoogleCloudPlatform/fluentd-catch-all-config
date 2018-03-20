@@ -3,6 +3,7 @@
 BASE_PACKAGE_NAME=google-fluentd
 PACKAGE_NAME=${BASE_PACKAGE_NAME}-catch-all-config
 PACKAGE_VERSION=0.7
+BUILD_DESCRIPTION="Automated Build"
 
 BUILD_DIR=build
 
@@ -21,11 +22,14 @@ all: pkg tar
 pkg: deb rpm
 
 deb: populate-deb
+	(cd pkg/deb/ && \
+	 dch --controlmaint --package "${PACKAGE_NAME}" \
+	     -v "${PACKAGE_VERSION}" "${BUILD_DESCRIPTION}")
 	cp -a pkg/deb/debian ${DEB_PACKAGE_DIR}
 	(cd ${DEB_PACKAGE_DIR} && debuild --no-tgz-check -us -uc)
 
 rpm: populate-el
-	rpmbuild -v -bb --nodeps --target noarch --define "buildroot `pwd`/${RPM_PACKAGE_DIR}/files" --define "_rpmdir `pwd`/${BUILD_DIR}/el" --define "package_version ${PACKAGE_VERSION}" --define "package_build_num 1" pkg/el/google-fluentd-catch-all-config.spec
+	rpmbuild -v -bb --nodeps --target noarch --define "buildroot `pwd`/${RPM_PACKAGE_DIR}/files" --define "_rpmdir `pwd`/${BUILD_DIR}/el" --define "package_version ${PACKAGE_VERSION}" --define "package_build_num 1" "pkg/el/${PACKAGE_NAME}.spec"
 
 tar: deb-tar el-tar
 
