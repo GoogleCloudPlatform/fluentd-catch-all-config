@@ -1,7 +1,7 @@
 Summary: Catch-all configuration files for google-fluentd on GCE.
 Name: google-fluentd-catch-all-config
 Version: %{package_version}
-Release: %{package_build_num}%{?dist}
+Release: %{package_build_num}
 License: ASL 2.0
 Group: System Environment/Daemons
 URL: https://cloud.google.com/logging/
