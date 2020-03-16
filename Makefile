@@ -2,7 +2,7 @@
 
 BASE_PACKAGE_NAME=google-fluentd
 PACKAGE_NAME=${BASE_PACKAGE_NAME}-catch-all-config
-PACKAGE_VERSION=0.7
+PACKAGE_VERSION=0.8
 BUILD_DESCRIPTION="Automated Build"
 
 BUILD_DIR=build
@@ -54,9 +54,6 @@ populate-el:
 	# populate config files
 	mkdir -p ${EL_FILES_DIR}
 	cp -a configs/* ${EL_FILES_DIR}
-	# collect /var/log/messages on RH since syslog does not exist.
-	sed -i -e 's/path \/var\/log\/syslog/path \/var\/log\/messages/' \
-	    ${EL_FILES_DIR}/config.d/syslog.conf
 	# create the directory used for "pos_file"s
 	mkdir -p ${EL_POS_FILES_DIR}
 
