@@ -46,14 +46,18 @@ el-tar: populate-el
 populate-deb:
 	# populate config files
 	mkdir -p ${DEB_FILES_DIR}
+	mkdir -p ${DEB_FILES_DIR}/baseline
 	cp -a configs/* ${DEB_FILES_DIR}
+	cp -a configs/* ${DEB_FILES_DIR}/baseline
 	# create the directory used for "pos_file"s
 	mkdir -p ${DEB_POS_FILES_DIR}
 
 populate-el:
 	# populate config files
 	mkdir -p ${EL_FILES_DIR}
+	mkdir -p ${EL_FILES_DIR}/baseline
 	cp -a configs/* ${EL_FILES_DIR}
+	cp -a configs/* ${EL_FILES_DIR}/baseline
 	# create the directory used for "pos_file"s
 	mkdir -p ${EL_POS_FILES_DIR}
 
