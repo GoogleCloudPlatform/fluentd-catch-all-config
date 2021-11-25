@@ -5,7 +5,7 @@ Collection of configuration files for the Fluentd log collection agent. Intended
 
 **Major version updates may introduce changes that are not backwards compatible.**
 
-This package attempts to keep parity with the [Fluentd Parsers](https://docs.fluentd.org/articles/parser-plugin-overview) when providing structured logs. The parsers that this package currently uses are:
+This package attempts to keep parity with the [Fluentd Parsers](https://docs.fluentd.org/parser) when providing structured logs. The parsers that this package currently uses are:
 
 * `apache2`
 * `apache_error`
